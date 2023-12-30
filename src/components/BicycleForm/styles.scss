@@ -36,7 +36,7 @@ form {
         }
     }
 
-    .form-group:nth-last-child(2) {
+    .text-area {
         grid-column: span 2;
     }
 
@@ -66,5 +66,10 @@ form {
                 }
             }
         }
+    }
+
+    .success-message {
+        color: $available;
+        font-weight: 700;
     }
 }

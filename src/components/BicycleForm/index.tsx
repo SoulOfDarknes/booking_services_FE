@@ -2,10 +2,13 @@ import { useFormik } from 'formik';
 import { validationSchema } from 'src/validation/Validation';
 import './styles.scss';
 import { useAddBicycleMutation } from '../../redux/services/bicycleApi';
+import { useState } from 'react';
+import { BicycleType } from 'src/types/enumBicycle';
 
 export default function BicycleForm() {
 
   const [addBicycle] = useAddBicycleMutation();
+  const [successMessage, setSuccessMessage] = useState('');
   
   const formik = useFormik({
     initialValues: {
@@ -19,7 +22,6 @@ export default function BicycleForm() {
     },
     validationSchema,
     onSubmit: async (values) => {
-      console.log(values)
   try {
     const formattedValues = {
       ...values,
@@ -28,13 +30,21 @@ export default function BicycleForm() {
     };
 
     const response = await addBicycle(formattedValues).unwrap();
-    console.log('added', response);
+
+        setSuccessMessage('Bicycle added successfully!');
+
     formik.resetForm();
   } catch (error) {
     console.error('error', error);
+    setSuccessMessage('');
   }
     },
+    
   });
+    const handleReset = () => {
+    formik.resetForm();
+    setSuccessMessage('');
+  };
 
   return (
 <form onSubmit={formik.handleSubmit}>
@@ -42,11 +52,24 @@ export default function BicycleForm() {
     <input type="text" placeholder="Name" {...formik.getFieldProps('name')} />
     {formik.touched.name && formik.errors.name && <div className="error">{formik.errors.name}</div>}
   </div>
-  
-  <div className="form-group">
-    <input type="text" placeholder="Type" {...formik.getFieldProps('type')} />
-    {formik.touched.type && formik.errors.type && <div className="error">{formik.errors.type}</div>}
-  </div>
+      
+<div className="form-group">
+  <select
+    {...formik.getFieldProps('type')}
+  >
+    <option value="" disabled hidden>
+      Choose a type
+    </option>
+    {Object.values(BicycleType).map((type) => (
+      <option key={type} value={type}>
+        {type}
+      </option>
+    ))}
+  </select>
+  {formik.touched.type && formik.errors.type && <div className="error">{formik.errors.type}</div>}
+</div>
+
+
 
 <div className="form-group">
   <select {...formik.getFieldProps('color')}>
@@ -76,15 +99,16 @@ export default function BicycleForm() {
     {formik.touched.id && formik.errors.id && <div className="error">{formik.errors.id}</div>}
   </div>
 
-  <div className="form-group">
+  <div className="form-group text-area">
     <textarea placeholder="Description" {...formik.getFieldProps('description')} />
     {formik.touched.description && formik.errors.description && <div className="error">{formik.errors.description}</div>}
   </div>
 
   <div className="form-group actions">
     <button type="submit">SAVE</button>
-    <button type="button" onClick={formik.handleReset}>CLEAR</button>
-  </div>
+    <button type="button" onClick={handleReset}>CLEAR</button>
+      </div>
+      {successMessage && <div className="success-message">{successMessage}</div>}
 </form>
 
   );
