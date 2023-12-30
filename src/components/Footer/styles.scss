@@ -1,0 +1,17 @@
+@import "../../styles/var.scss";
+
+.footer {
+    width: 100%;
+    color: $text-color-bg;
+    background-color: $bg-color;
+    padding: 5px 15px;
+    text-align: right;
+    font-size: clamp(16px, 1.5vw, 20px);
+    span {
+        color: $text-color-dev;
+    }
+    a {
+        text-decoration: none;
+        color: $text-color;
+    }
+}

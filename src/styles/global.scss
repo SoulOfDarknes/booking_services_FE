@@ -1,0 +1,16 @@
+@import "var.scss";
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $text-color-bg;
+    font-family: Saira;
+    padding-top: 10vw;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
