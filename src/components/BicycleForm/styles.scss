@@ -13,7 +13,8 @@ form {
         flex-direction: column;
         position: relative;
 
-        input[type="text"],
+        input,
+        select,
         textarea {
             border: $text-color-bg;
             padding: 5px;

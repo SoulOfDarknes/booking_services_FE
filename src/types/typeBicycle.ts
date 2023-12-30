@@ -1,9 +1,4 @@
-export enum BicycleStatus {
-    Available = 'Available',
-    Busy = 'Busy',
-    Unavailable = 'Unavailable'
-}
-
+import { BicycleStatus } from "./enumBicycle"
 export interface Bicycle {
     id: string;
     name: string;

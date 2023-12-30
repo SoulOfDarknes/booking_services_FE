@@ -1,8 +1,12 @@
 import { useFormik } from 'formik';
 import { validationSchema } from 'src/validation/Validation';
 import './styles.scss';
+import { useAddBicycleMutation } from '../../redux/services/bicycleApi';
 
 export default function BicycleForm() {
+
+  const [addBicycle] = useAddBicycleMutation();
+  
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -14,8 +18,21 @@ export default function BicycleForm() {
       description: '',
     },
     validationSchema,
-    onSubmit: (values) => {
-      // TODO
+    onSubmit: async (values) => {
+      console.log(values)
+  try {
+    const formattedValues = {
+      ...values,
+      wheelSize: Number(values.wheelSize),
+      price: Number(values.price),
+    };
+
+    const response = await addBicycle(formattedValues).unwrap();
+    console.log('added', response);
+    formik.resetForm();
+  } catch (error) {
+    console.error('error', error);
+  }
     },
   });
 
@@ -31,18 +48,26 @@ export default function BicycleForm() {
     {formik.touched.type && formik.errors.type && <div className="error">{formik.errors.type}</div>}
   </div>
 
-  <div className="form-group">
-    <input type="text" placeholder="Color" {...formik.getFieldProps('color')} />
-    {formik.touched.color && formik.errors.color && <div className="error">{formik.errors.color}</div>}
-  </div>
+<div className="form-group">
+  <select {...formik.getFieldProps('color')}>
+    <option value="" disabled>Choose a color</option>
+    <option value="Red">Red</option>
+    <option value="Green">Green</option>
+    <option value="Blue">Blue</option>
+    <option value="Black">Black</option>
+    <option value="White">White</option>
+  </select>
+  {formik.touched.color && formik.errors.color && <div className="error">{formik.errors.color}</div>}
+</div>
+
 
   <div className="form-group">
-    <input type="text" placeholder="Wheel size" {...formik.getFieldProps('wheelSize')} />
+    <input type="number" placeholder="Wheel size" {...formik.getFieldProps('wheelSize')} />
     {formik.touched.wheelSize && formik.errors.wheelSize && <div className="error">{formik.errors.wheelSize}</div>}
   </div>
 
   <div className="form-group">
-    <input type="text" placeholder="Price" {...formik.getFieldProps('price')} />
+    <input type="number" placeholder="Price" {...formik.getFieldProps('price')} />
     {formik.touched.price && formik.errors.price && <div className="error">{formik.errors.price}</div>}
   </div>
 

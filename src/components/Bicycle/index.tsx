@@ -1,4 +1,4 @@
-import { Bicycle, BicycleStatus } from './type';
+import { Bicycle} from '../../types/typeBicycle';
 
 interface BicycleListProps {
   bicycles: Bicycle[];
