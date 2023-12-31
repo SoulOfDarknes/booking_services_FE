@@ -22,7 +22,7 @@ export default function Statistics() {
       <div>Total Bikes: <span>{stats.totalCount}</span></div>
       <div>Available Bikes: <span>{stats.availableCount}</span></div>
       <div>Booked Bikes: <span>{stats.busyCount}</span></div>
-      <div>Average Bike Cost: <span>{stats.averagePrice}</span> UAH/hr</div>
+      <div>Average Bike Cost: <span>{ stats.averagePrice.toFixed(2)}</span> UAH/hr</div>
     </div>
   );
 };

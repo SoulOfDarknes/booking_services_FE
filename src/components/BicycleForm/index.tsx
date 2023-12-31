@@ -4,11 +4,14 @@ import './styles.scss';
 import { useAddBicycleMutation } from '../../redux/services/bicycleApi';
 import { useState } from 'react';
 import { BicycleType } from 'src/types/enumBicycle';
+import { ApiError } from 'src/types/Stat';
 
 export default function BicycleForm() {
 
   const [addBicycle] = useAddBicycleMutation();
   const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+
   
   const formik = useFormik({
     initialValues: {
@@ -22,28 +25,36 @@ export default function BicycleForm() {
     },
     validationSchema,
     onSubmit: async (values) => {
-  try {
-    const formattedValues = {
-      ...values,
-      wheelSize: Number(values.wheelSize),
-      price: Number(values.price),
-    };
+        setSuccessMessage('');
+        setErrorMessage('');
+    try {
+      const formattedValues = {
+        ...values,
+        wheelSize: Number(values.wheelSize),
+        price: Number(values.price),
+      };
 
-    const response = await addBicycle(formattedValues).unwrap();
+      await addBicycle(formattedValues).unwrap();
+      setSuccessMessage('Bicycle added successfully!');
+      formik.resetForm();
 
-        setSuccessMessage('Bicycle added successfully!');
+    } catch (error) {
+      const e = error as ApiError;
+      if (e.status === 409) {
 
-    formik.resetForm();
-  } catch (error) {
-    console.error('error', error);
-    setSuccessMessage('');
-  }
-    },
+        setErrorMessage('A bicycle with this ID already exists.');
+      } else {
+        console.error('error', error);
+        setSuccessMessage('');
+      }
+    }
+  },
     
   });
     const handleReset = () => {
     formik.resetForm();
-    setSuccessMessage('');
+      setSuccessMessage('');
+      setErrorMessage('');
   };
 
   return (
@@ -109,6 +120,7 @@ export default function BicycleForm() {
     <button type="button" onClick={handleReset}>CLEAR</button>
       </div>
       {successMessage && <div className="success-message">{successMessage}</div>}
+      {errorMessage && <div className="error-message">{errorMessage}</div>}
 </form>
 
   );

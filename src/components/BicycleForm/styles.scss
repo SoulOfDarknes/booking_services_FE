@@ -72,4 +72,8 @@ form {
         color: $available;
         font-weight: 700;
     }
+    .error-message {
+        color: $unavailable;
+        font-weight: 700;
+    }
 }
