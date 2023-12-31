@@ -1,46 +1,53 @@
-# Getting Started with Create React App
+# Bicycle Booking Services Admin Panel
+## Description
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is an administrative panel for bicycle booking services. 
+It allows users to add, view, edit, and delete information about bicycles, as well as view statistics on available bicycles.
 
-## Available Scripts
+## Installation
 
-In the project directory, you can run:
+To get started with the project, clone the repository and install the dependencies:
 
-### `npm start`
+```bash
+git clone [your repository link]
+cd [your project folder name]
+npm install
+```
+## Environment Setup
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Before starting the application, ensure you have the .env file set up in your project root with all necessary configurations. 
+Refer to the .env.example file for required environment variables.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Running the Application
 
-### `npm test`
+To run the application in development mode:
+```bash
+npm start
+```
+After starting, the application will be available at http://localhost:3000 in your browser.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Building for Production
 
-### `npm run build`
+To build the application for production:
+```bash
+npm run build
+```
+The build will be optimized for the best performance. The files will be minified, and the filenames will include hashes.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Features
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Add Bicycle: Allows adding new bicycles with their specifications.
+View Bicycles List: Displays all added bicycles.
+Change Bicycle Status: Enables changing the status of bicycles (available/busy/unavailable).
+Delete Bicycle: Removes a bicycle from the list.
+View Statistics: Shows statistics of bicycles (total count, count of available and busy bicycles, average cost).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Testing
 
-### `npm run eject`
+```bash
+npm test
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Additional Information
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+For more detailed information about React and Create React App, visit the Create React App documentation and the React documentation.
