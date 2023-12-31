@@ -36,11 +36,11 @@ The build will be optimized for the best performance. The files will be minified
 
 ## Features
 
-Add Bicycle: Allows adding new bicycles with their specifications.
-View Bicycles List: Displays all added bicycles.
-Change Bicycle Status: Enables changing the status of bicycles (available/busy/unavailable).
-Delete Bicycle: Removes a bicycle from the list.
-View Statistics: Shows statistics of bicycles (total count, count of available and busy bicycles, average cost).
+- Add Bicycle: Allows adding new bicycles with their specifications.
+- View Bicycles List: Displays all added bicycles.
+- Change Bicycle Status: Enables changing the status of bicycles (available/busy/unavailable).
+- Delete Bicycle: Removes a bicycle from the list.
+- View Statistics: Shows statistics of bicycles (total count, count of available and busy bicycles, average cost).
 
 ## Testing
 
