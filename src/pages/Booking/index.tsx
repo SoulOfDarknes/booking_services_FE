@@ -4,6 +4,7 @@ import BicycleForm from '../../components/BicycleForm';
 import Footer from '../../components/Footer/index';
 import Navigation from '../../components/Navigation/index';
 import './styles.scss';
+import Statistics from '../../components/Statistics';
 
 export default function Booking() {
   const { data: bicycles, error, isLoading } = useGetBicyclesQuery();
@@ -20,6 +21,7 @@ export default function Booking() {
         </div>
         <div className='rightSide'>
           <BicycleForm />
+          <Statistics/>
           </div>
             </div>
           <Footer />
