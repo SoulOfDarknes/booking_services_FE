@@ -9,7 +9,7 @@ It allows users to add, view, edit, and delete information about bicycles, as we
 To get started with the project, clone the repository and install the dependencies:
 
 ```bash
-git clone [your repository link]
+git clone [repository link]
 cd [your project folder name]
 npm install
 ```
